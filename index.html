@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript基础部分</title>
+	<style type="text/css">
+	body,div,header,section,ul,li,footer {
+		margin:0;
+		padding:0;
+	}
+	img {
+		border:none;
+	}
+	ul {
+		list-style: none;
+	}
+	a {
+		text-decoration: none;
+	}
+	.clearfix:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.clearfix {
+		*zoom:1;
+	}
+	body {
+		background:url("img/bg.jpg") no-repeat;
+		background-size: cover;
+		font-family: "\5FAE\8F6F\96C5\9ED1";
+	}
+	@keyframes snow {
+		0% {
+			background-position: 0 0,0 0;
+		}
+		100% {
+			background-position: 500px 500px,1000px 500px;
+		}
+	}
+	#snowMask {
+		position: fixed;
+		left:0;
+		top:0;
+		right:0;
+		bottom: 0;
+		background: url("img/snow1.png"),url("img/snow2.png");
+		animation: 10s snow linear infinite;
+		pointer-events: none;
+	}
+	header {
+	  background: -webkit-linear-gradient(rgba(232,247,254,1),rgba(232,247,254,0.5),rgba(232,247,254,1)); /* Safari 5.1 - 6 */
+	  background: -o-linear-gradient(rgba(232,247,254,1),rgba(232,247,254,0.5),rgba(232,247,254,1)); /* Opera 11.1 - 12*/
+	  background: -moz-linear-gradient(rgba(232,247,254,1),rgba(232,247,254,0.5),rgba(232,247,254,1)); /* Firefox 3.6 - 15*/
+	  background: linear-gradient(rgba(232,247,254,1),rgba(232,247,254,0.5), rgba(232,247,254,1)); /* 标准的语法 */
+	}
+	header img {
+		border:1px solid #;
+		border-radius: 20px;
+	}
+	section .wrap {
+		width:920px;
+		margin:0 auto;
+		margin-top: 50px;
+	}
+	#content {
+		margin-left: -40px;
+		margin-bottom: 50px;
+	}
+	#content li {
+		float: left;
+		margin-right: 40px;
+		width:200px;
+		height:227px;
+	}
+	#content li a {
+		display: block;
+		width:200px;
+		height:137px;
+		padding-top:90px;
+		text-align: center;
+	}
+	#content li a:link,#content li a:visited {
+		color:#000;
+	}
+	#content li a:hover,#content li a:active {
+		text-decoration: underline;
+		color:#fd00e8;
+	}
+	#pagination {
+		width:225px;
+		margin:0 auto;
+	}
+	#pagination li {
+		float:left;
+	}
+	#pagination a {
+		background: #fff;
+		display: block;
+		width:30px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		border:1px solid #515dfb;
+		border-left: none;
+		color:#000;
+	}
+	#pagination a:hover {
+		background: #afb5fb;
+		color:#fff;
+	}
+	#pagination a.border_left {
+		border-left: 1px solid #515dfb;
+		border-radius: 10px 0 0 10px;
+	}
+	#pagination a.border_right {
+		border-radius: 0 10px 10px 0;
+	}
+	#pagination a.active {
+		color:#2433f7;
+	}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			bg_change();
+			
+			var data={
+				title:[
+				'数据类型、类型转换——QQ号码','数据类型、类型转换——找到合适的值','函数传参——商品加减与统计结果','函数传参——修改文本框的值','函数传参——搜狐视频纪录片列表展示','函数传参——选择卡里套选择卡','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21'],
+				link:['数据类型、类型转换——QQ号码/QQ号码.html','数据类型、类型转换——找到合适的值/找到合适的值.html','函数传参——商品加减与统计结果/商品加减与统计结果.html','函数传参——修改文本框的值/修改文本框的值.html','函数传参——搜狐视频纪录片列表展示/搜狐视频纪录片列表展示.html','函数传参——选择卡里套选择卡/选择卡里套选择卡.html']
+			};
+			page({
+				id:'pagination',
+				nowNum:1,
+				allNum:Math.ceil(data.title.length/4),
+				callback:function(now,all){
+					var num=now*4<data.title.length?4:data.title.length-(now-1)*4;
+					var oUl=document.getElementById("content");
+					if(oUl.innerHTML==""){
+						for(var i=0;i<num;i++){
+							var oLi=document.createElement('li');
+							var oA=document.createElement("a");
+							oA.innerHTML=data.title[(now-1)*4+i];
+							oA.href=data.link[(now-1)*4+i];
+							oA.target="_blank";
+							oLi.appendChild(oA);
+							oUl.appendChild(oLi);
+						}
+					}else{
+						oUl.innerHTML='';
+						for(var i=0;i<num;i++){
+							var oLi=document.createElement('li');
+							var oA=document.createElement("a");
+							oA.innerHTML=data.title[(now-1)*4+i];
+							oLi.appendChild(oA);
+							oUl.appendChild(oLi);
+						}
+					}
+					bg_change();
+				}
+			});
+
+			
+			function bg_change(){
+				var imgArr=["img/ball2.png","img/ball3.png","img/ball1.png","img/ball9.png"];
+				var imgHover=["img/ball4.png","img/ball6.png","img/ball8.png","img/ball7.png"];
+				var conUl=document.getElementById("content");
+				var aLi=conUl.getElementsByTagName("li");
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].index=i;
+					aLi[i].style.backgroundImage='url("'+imgArr[i%4]+'")';
+					aLi[i].onmouseover=function(){
+						this.style.backgroundImage='url("'+imgHover[this.index%4]+'")';
+					}
+					aLi[i].onmouseout=function(){
+						this.style.backgroundImage='url("'+imgArr[this.index%4]+'")';
+					}
+				}
+			}
+			function page(opt){
+				if(!opt.id){return false;};
+				var obj=document.getElementById(opt.id);
+				var nowNum=opt.nowNum || 1;
+				var allNum=opt.allNum || 5;
+				var callback=opt.callback || function(){};
+			
+				//显示上一页
+				if(nowNum>=1){
+					var oLi=document.createElement("li");
+					var oA=document.createElement("a");
+					oA.innerHTML="&laquo;";
+					oA.className="border_left";
+			        
+			        if(nowNum==1){
+			            oA.href="javascript:;";
+			        }else{
+			        	oA.href="#"+(nowNum-1);
+			        }
+			        oLi.appendChild(oA)
+			        obj.appendChild(oLi);
+			    }
+				//显示页码
+				if(allNum<=5){//allNum小于或等于5；
+					for(var i=1;i<=allNum;i++){
+						var oLi=document.createElement("li");
+						var oA=document.createElement("a");
+						oA.href="#"+i;
+						oA.innerHTML=i;
+						if(nowNum==i){
+							oA.className='active';
+						}else{
+							oA.className='';
+						}
+						oLi.appendChild(oA)
+			        	obj.appendChild(oLi);
+					}
+				}else{//allNum大于5；
+					for(var i=1;i<=5;i++){
+						var oLi=document.createElement("li");
+						var oA=document.createElement("a");
+						if(nowNum==1||nowNum==2){//中间页是1和2，即处理前两个页码
+							oA.href="#"+i;
+							oA.innerHTML=i;
+							if(nowNum==i){
+								oA.className='active';
+							}else{
+								oA.className='';
+							}
+						}else if((allNum-nowNum)==0||(allNum-nowNum)==1){//中间页是最后两个，即处理后两个页码
+							oA.href="#"+(allNum-5+i);
+							oA.innerHTML=allNum-5+i;
+							if((allNum-nowNum)==0&&i==5){//当前页特效,最后一个页码特效
+								oA.className='active';
+							}else if((allNum-nowNum)==1&&i==4){//当前页特效,倒数第二个页码特效
+								oA.className='active';
+							}else{
+								oA.className='';
+							}
+						}else{
+							oA.href="#"+(nowNum-3+i);
+							oA.innerHTML=nowNum-3+i;
+							if(i==3){
+								oA.className='active';
+							}else{
+								oA.className='';
+							}
+						}
+						oLi.appendChild(oA)
+			        	obj.appendChild(oLi);
+					}
+				}
+			
+				//显示下一页
+			    if((allNum-nowNum>=0)){
+			        var oLi=document.createElement("li");
+					var oA=document.createElement("a");
+					oA.innerHTML="&raquo;";
+					oA.className="border_right";
+			        if(nowNum==allNum){
+			            oA.href="javascript:;";
+			        }else{ 
+			        	oA.href='#'+(nowNum+1);
+			        }
+			        oLi.appendChild(oA)
+			        obj.appendChild(oLi);
+			    }
+			
+			    //回调函数(创建结束执行)
+				callback(nowNum,allNum);
+			
+				//点击页码切换
+				var aA=obj.getElementsByTagName("a");
+				for(var i=0;i<aA.length;i++){
+					aA[i].onclick=function(){
+						var aHref=this.getAttribute("href");
+						if(aHref=="javascript:;"){
+							this.href="javascript:;";
+						}else{
+							var nowNum=parseInt(aHref.substring(1));
+
+						obj.innerHTML='';
+							page({
+								id:opt.id,
+								nowNum:nowNum,
+								allNum:allNum,
+								callback:callback
+							});
+						}
+						return false;
+					}
+				}
+			};//page函数结束
+		}
+	</script>
+</head>
+<body>
+	<div id="snowMask"></div>
+	<header><img src="img/logo.png"></header>
+	<section>
+		<div class="wrap">
+			<ul class="clearfix" id="content"></ul>
+		</div>
+	</section>
+	<footer>
+		<ul id="pagination" class="clearfix"></ul>
+	</footer>
+</body>
+</html>

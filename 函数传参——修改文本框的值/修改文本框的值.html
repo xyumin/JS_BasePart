@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修改文本框的值</title>
+	<style type="text/css">
+		body,div,ul,li,p,input {
+			margin:0;
+			padding:0;
+		}
+		ul {
+			list-style: none;
+		}
+		a {
+			text-decoration: none;
+		}
+		input {
+			outline:none;
+		}
+		.clearfix:after {
+			content:'';
+			display: block;
+			clear:both;
+		}
+		.clearfix {
+			*zoom :1;
+		}
+		#content {
+			width:800px;
+			margin:0 auto;
+			margin-top:50px;
+			border:1px solid #000;
+		}
+		.title {
+			background-color: #6ba542;
+			font-size: 16px;
+			font-weight: bold;
+			color:#fff;
+			text-indent: 20px;
+			height:30px;
+			line-height: 30px;
+		}
+		li {
+			height:40px;
+			line-height:40px ;
+			background-color:#fff ;
+			border-top: 1px solid #bddede;
+		}
+		li div {
+			padding-left:20px;
+		}
+		.written {
+			display: block;
+			/*display: none;*/
+		}
+		.written span {
+			float: left;
+			font-size: 12px;
+			margin-right:10px;
+		}
+		.written a {
+			float: left;
+			width:40px;
+			height:40px;
+			background: url('edit.png') no-repeat center center;
+		}
+		.edit_box {
+			display: none;
+			/*display: block;*/
+		}
+		.text_area {
+			float: left;
+			height:20px;
+			line-height: 20px;
+			font-size: 14px;
+			text-indent: 5px;
+			margin-top:8px;
+			margin-right:10px;
+		}
+		.edit_box a {
+			float: left;
+			display: block;
+			width:40px;
+			height: 24px;
+			line-height: 24px;
+			color:#6ba542;
+			text-align: center;
+			margin-top:8px;
+			margin-right:5px;
+			cursor: pointer;
+		}
+		.edit_box a:hover {
+			background-color: #6ba542;
+			color:#fff;
+		} 
+
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oContent=document.getElementById('content');
+			var oUl=getByTagName('ul',oContent)[0];
+			var aLi=getByTagName('li',oUl);
+
+			var flag=0;
+
+			for(var i=0;i<aLi.length;i++){
+				edit_btn(aLi[i]);
+			}
+
+			function edit_btn(index){
+				var aDiv=getByTagName('div',index);
+				var oSpan=getByTagName('span',index)[0];
+				var oInp=getByTagName('input',index)[0];
+				var aLink=getByTagName('a',index);
+
+				aLink[0].onclick=function(){
+					if(!flag){
+						flag=1;
+						aDiv[0].style.display="none";
+						aDiv[1].style.display="block";
+						oInp.value=oSpan.innerHTML;
+					}
+				}
+				aLink[1].onclick=function(){
+					if(flag){
+						flag=0;
+						aDiv[1].style.display="none";
+						aDiv[0].style.display="block";
+						oSpan.innerHTML=oInp.value;
+					}
+				}
+				aLink[2].onclick=function(){
+					if(flag){
+						flag=0;
+						aDiv[1].style.display="none";
+						aDiv[0].style.display="block";
+					}
+				}
+			}
+			
+			function getByTagName(ele,parentEle){
+				if(parentEle){
+					return parentEle.getElementsByTagName(ele);
+				}else{
+					return document.getElementsByTagName(ele);
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="content">
+		<p class="title">分类名称</p>
+		<ul>
+			<li><div class="written clearfix"><span>妙味远程课堂</span><a href="javascript:;"></a></div><div class="edit_box clearfix"><input type="text" name="text_area" class="text_area"/><a href="javascript:;">保存</a><a href="javascript:;" >取消</a></div></li>
+			<li><div class="written clearfix"><span>妙味远程课堂</span><a href="javascript:;"></a></div><div class="edit_box clearfix"><input type="text" name="text_area" class="text_area" value="妙味远程课堂" /><a href="javascript:;">保存</a><a href="javascript:;" >取消</a></div></li>
+		</ul>
+	</div>
+	
+</body>
+</html>

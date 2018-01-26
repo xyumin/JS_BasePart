@@ -1,0 +1,111 @@
+body,div,ul,li,p {
+	margin:0;
+	padding:0;
+}
+ul {
+	list-style: none;
+}
+.clearfix:after {
+	content:"";
+	display:block;
+	clear:both;
+}
+.clearfix {
+	*zoom:1;
+}
+.wrap {
+	width:952px;
+	margin:0 auto;
+	margin-top:10px;
+	background-color: #e7e7e7;
+	position: relative;
+}
+.tab_ul {
+	border:1px solid #c6c6c6;
+	border-bottom: none;
+}
+.tab_ul li {
+	width:150px;
+	height:54px;
+	text-align: center;
+	font-size: 14px;
+	border-bottom: 1px solid #c6c6c6;
+	padding:15px 0;
+	cursor:pointer;
+}
+.tab_ul li.active {
+	background-color: #fff;
+}
+.tab_ul li img,.tab_ul li span {
+	display: block;
+}
+.tab_ul li img {
+	width:40px;
+	height:40px;
+	margin:0 auto;
+}
+#content {
+	margin-top:-340px;
+	margin-left:151px;
+	position: relative;
+}
+#content div {
+	position: absolute;
+	top:0;
+	left:0;
+	width:800px;
+	height:339px;
+	background-color: #fff;
+}
+#content div.block {
+	display: block;
+}
+#content div.none {
+	display: none;
+}
+#content div ul {
+	width:800px;
+	height:300px;
+	position: relative;
+}
+#content div ul li {
+	width:800px;
+	height:300px;
+	position: absolute;
+	left:0;
+	top:0;
+}
+#content div ul li.block {
+	display: block;
+}
+#content div ul li.none {
+	display: none;
+}
+#content div p {
+	width:800px;
+	height:40px;
+	
+}
+#content div p span {
+	float: left;
+	color:#fff;
+	font-size:12px;
+	border-right:1px solid #fff;
+	display: block;
+	line-height: 40px;
+	background-color: rgba(0,0,0,0.5);
+	text-align: center;
+	cursor:pointer;
+}
+#content div p span.active {
+	background-color: #ef3163;
+}
+#content div p.three_tab span {
+	width:265px;
+}
+#content div p.four_tab span {
+	width:199px;
+}
+#content div p.five_tab span {
+	width:159px;
+}
