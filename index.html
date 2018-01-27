@@ -152,6 +152,8 @@
 							var oLi=document.createElement('li');
 							var oA=document.createElement("a");
 							oA.innerHTML=data.title[(now-1)*4+i];
+							oA.href=data.link[(now-1)*4+i];
+							oA.target="_blank";
 							oLi.appendChild(oA);
 							oUl.appendChild(oLi);
 						}
