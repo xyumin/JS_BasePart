@@ -39,17 +39,17 @@
 			var old=getTime();//加载页面时此时时间
 			for(var i=0;i<aDiv.length;i++){
 				var aImg=aDiv[i].getElementsByTagName("img");
-				aImg[0].src="img/"+old[i]+".jpg";			
+				aImg[0].src="img/"+old[i]+".JPG";			
 			};//初始化，显示当前时间
 
 			timer=setInterval(function(){
 				//点的闪烁
 				for(var i=0;i<imgs.length;i++){
-					imgs[i].src="img/colon.jpg";
+					imgs[i].src="img/colon.JPG";
 				}				
 				setTimeout(function(){
 					for(var i=0;i<imgs.length;i++){
-						imgs[i].src="img/colon1.jpg";
+						imgs[i].src="img/colon1.JPG";
 					}
 				},500);
 				showTime();//每一秒刷新时间
@@ -70,10 +70,10 @@
 			function slide(n,time){
 				var aImg=aDiv[n].getElementsByTagName("img");
 					
-				aImg[1].src="img/"+time[n]+".jpg";//第二张图片为此时
+				aImg[1].src="img/"+time[n]+".JPG";//第二张图片为此时
 
 				doMove(aDiv[n],'top',-172,400,function(){
-					aImg[0].src="img/"+time[n]+".jpg";//移动后，将第一张图片设为此时
+					aImg[0].src="img/"+time[n]+".JPG";//移动后，将第一张图片设为此时
 					aDiv[n].style.top="0px";
 				});
 				
@@ -119,24 +119,24 @@
 <body>
 	<ul>
 		<li>
-			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+			<div><img src="img/0.JPG"><img src="img/0.JPG"></div>
 		</li>
 		<li>
-			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+			<div><img src="img/0.JPG"><img src="img/0.JPG"></div>
 		</li>
-		<li><img src="img/colon.jpg"></li>
+		<li><img src="img/colon.JPG"></li>
 		<li>
-			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
-		</li>
-		<li>
-			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
-		</li>
-		<li><img src="img/colon.jpg"></li>
-		<li>
-			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+			<div><img src="img/0.JPG"><img src="img/0.JPG"></div>
 		</li>
 		<li>
-			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+			<div><img src="img/0.JPG"><img src="img/0.JPG"></div>
+		</li>
+		<li><img src="img/colon.JPG"></li>
+		<li>
+			<div><img src="img/0.JPG"><img src="img/0.JPG"></div>
+		</li>
+		<li>
+			<div><img src="img/0.JPG"><img src="img/0.JPG"></div>
 		</li>
 	</ul>
 </body>
