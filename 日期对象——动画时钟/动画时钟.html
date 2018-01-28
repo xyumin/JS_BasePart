@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画时钟</title>
+	<style type="text/css">
+		body,ul,li,div,img {
+			margin:0;
+			padding:0;
+		}
+		ul {
+			list-style: none;
+			height:172px;
+			overflow: hidden;
+		}
+		li {
+			float:left;
+			width:122px;
+			height:344px;
+			position: relative;
+		}
+		div {
+			position: absolute;
+			top:0;
+			width:122px;
+			height:344px;
+		}
+		img {
+			border:none;
+			outline: none;
+		}
+
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var aDiv=document.getElementsByTagName("div");
+			var imgs=document.querySelectorAll("li>img");
+			var timer=null;
+			var old=getTime();//加载页面时此时时间
+			for(var i=0;i<aDiv.length;i++){
+				var aImg=aDiv[i].getElementsByTagName("img");
+				aImg[0].src="img/"+old[i]+".jpg";			
+			};//初始化，显示当前时间
+
+			timer=setInterval(function(){
+				//点的闪烁
+				for(var i=0;i<imgs.length;i++){
+					imgs[i].src="img/colon.jpg";
+				}				
+				setTimeout(function(){
+					for(var i=0;i<imgs.length;i++){
+						imgs[i].src="img/colon1.jpg";
+					}
+				},500);
+				showTime();//每一秒刷新时间
+			},1000);
+			
+			
+			function showTime(){
+				var time=getTime();
+								
+				for(var i=0;i<time.length;i++){
+					if(time[i]!=old[i]){
+						slide(i,time);
+					}					
+				}				
+				old=time;//存储上一秒的时间
+
+			}
+			function slide(n,time){
+				var aImg=aDiv[n].getElementsByTagName("img");
+					
+				aImg[1].src="img/"+time[n]+".jpg";//第二张图片为此时
+
+				doMove(aDiv[n],'top',-172,400,function(){
+					aImg[0].src="img/"+time[n]+".jpg";//移动后，将第一张图片设为此时
+					aDiv[n].style.top="0px";
+				});
+				
+
+			}
+			function doMove(obj,attr,target,duration,callback){
+				var now=parseInt(getStyle(obj,attr));//初始值
+				var now_time=new Date().getTime();//开始运动时的毫秒数
+				var distance=target-now;//移动的总距离
+				clearInterval(obj.timer);
+				obj.timer=setInterval(function(){
+					var time=new Date().getTime()-now_time;
+
+					var speed=now+distance/duration*time;//现在的位置
+					obj.style[attr]=speed+"px";
+					if(time>=duration){
+						clearInterval(obj.timer);
+						obj.style[attr]=target+"px";
+						callback&&callback();
+					}					
+				},30);
+			}
+
+			function getTime(){
+				var date=new Date();
+				var h=date.getHours();
+				var m=date.getMinutes();
+				var s=date.getSeconds();
+
+				h=h<10?"0"+h:""+h;
+				m=m<10?"0"+m:""+m;
+				s=s<10?"0"+s:""+s;
+
+				return h+m+s;				
+			}
+			function getStyle(obj,attr){
+				return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<ul>
+		<li>
+			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+		</li>
+		<li>
+			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+		</li>
+		<li><img src="img/colon.jpg"></li>
+		<li>
+			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+		</li>
+		<li>
+			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+		</li>
+		<li><img src="img/colon.jpg"></li>
+		<li>
+			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+		</li>
+		<li>
+			<div><img src="img/0.jpg"><img src="img/0.jpg"></div>
+		</li>
+	</ul>
+</body>
+</html>
