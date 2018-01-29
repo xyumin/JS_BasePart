@@ -1,0 +1,128 @@
+body,div,input,ul,li {
+	margin:0;
+	padding:0;
+}
+a {
+	text-decoration: none;
+}
+ul {
+	list-style: none;
+}
+input {
+	outline: none;
+}
+.clearfix:after {
+	display: block;
+	content:"";
+	clear: both;
+}
+.clearfix {
+	*zoom:1;
+}
+.wrap {
+	width: 640px;
+	height: 500px;
+	margin:0 auto;
+	background-color: #efefe7;
+	overflow: hidden;
+	position: relative;
+}
+#content {
+	width: 454px;
+	height:210px;
+	margin:60px 0 0 30px;
+	font-size: 16px;
+	line-height: 30px;
+	padding:20px 26px 20px 20px;
+	font-family: "微软雅黑";
+	background-color: #fff;
+}
+#content span {
+	display: inline-block;
+	background: yellow;
+}
+#panel {
+	width:500px;
+	height:128px;
+	border:10px solid #e71063;
+	margin:10px 0 0 20px;
+	position: relative;
+}
+#panel ul {
+	margin:20px;
+	border-bottom: 2px solid #e73100;
+}
+#panel ul li {
+	float: left;
+	width:80px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	cursor: pointer;
+}
+#panel ul li.active {
+	background-color: #e73100;
+	color:#fff;
+}
+#panel span {
+	position: absolute;
+	top:12px;
+	right:12px;
+	cursor: pointer;
+}
+#panel div {
+	position: absolute;
+	left:20px;
+	top:76px;
+}
+#panel div input {
+	width:180px;
+	height:30px;
+	line-height: 30px;
+	margin-right: 10px;
+}
+#panel div button {
+	width:80px;
+	height:30px;
+}
+#btn-group {
+	position: absolute;
+	top:50px;
+	right: 16px;
+}
+#btn-group ul.none {
+	height:40px;
+	overflow: hidden;
+}
+#btn-group ul.block {
+	height:120px;
+}
+#btn-group ul li {
+	width:80px;
+	height:40px;
+}
+#btn-group ul li a {
+	display: block;
+	width:80px;
+	line-height:40px;
+	background-color: #94948c;
+	color:#fff;
+	text-align: center;
+	cursor: pointer;
+	font-size: 16px;
+}
+#btn-group ul li a.normal {
+	background-color: #c0c0c0;
+	color:#000;
+	border-top:1px solid #fff;
+}
+#btn-group ul li a.normal:hover {
+	background-color: #e76308;
+	color:#fff;
+}
+.hidden {
+	display: none;
+}
+.show {
+	display: block;
+}
